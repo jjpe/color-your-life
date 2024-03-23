@@ -2,8 +2,8 @@
 name = "color-your-life"
 version = "0.1.0"
 edition = "2021"
-author = "Joey Ezechiels"
-msrv = "1.77.0"
+authors = ["Joey Ezechiels"]
+rust-version = "1.62.1"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
