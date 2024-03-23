@@ -2,9 +2,10 @@
 name = "color-your-life"
 version = "0.1.0"
 edition = "2021"
-msrv = "1.77.0"
 author = "Joey Ezechiels"
+msrv = "1.77.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+ansi_term = "0.12.1"
