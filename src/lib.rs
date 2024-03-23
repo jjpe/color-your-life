@@ -1,28 +1,29 @@
 //!
 
+pub use ansi_term::Color;
 use std::fmt::Write;
-use ansi_term::Color;
 
-pub trait ColorDisplay<A> {
+pub trait ColorDisplay<F> {
     const INDENTATION: &'static str = "    ";
+    const NEWLINE: &'static str = "\n";
 
     fn color_fmt(
         &self,
         sink: &mut impl Write,
-        args: &A,
+        format: &F,
     ) -> std::fmt::Result;
 
     /// Utility method to simpify writing the proper amount of indentation.
     /// In order to print the right indentation token, it takes into account
-    /// the implementing type as well as the print argument type `A`.
+    /// the implementing type as well as the format type `F`.
     fn write_indentation(
         &self,
         sink: &mut impl Write,
         count: u16,
-        _args: &A,
+        _: &F,
     ) -> std::fmt::Result {
         for _ in 0..count {
-            write!(sink, "{}", <Self as ColorDisplay<A>>::INDENTATION)?;
+            write!(sink, "{}", <Self as ColorDisplay<F>>::INDENTATION)?;
         }
         Ok(())
     }
