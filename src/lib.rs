@@ -27,6 +27,21 @@ pub trait ColorDisplay<F> {
         }
         Ok(())
     }
+
+    /// Utility method to simpify writing newlines.
+    /// In order to print the right newline characters, it takes into account
+    /// the implementing type as well as the format type `F`.
+    fn write_newlines(
+        &self,
+        sink: &mut impl Write,
+        count: u16,
+        _: &F,
+    ) -> std::fmt::Result {
+        for _ in 0..count {
+            write!(sink, "{}", <Self as ColorDisplay<F>>::NEWLINE)?;
+        }
+        Ok(())
+    }
 }
 
 #[derive(Clone, Copy, PartialEq)]
