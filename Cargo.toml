@@ -1,0 +1,10 @@
+[package]
+name = "color-your-life"
+version = "0.1.0"
+edition = "2021"
+msrv = "1.77.0"
+author = "Joey Ezechiels"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
