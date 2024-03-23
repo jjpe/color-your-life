@@ -54,3 +54,4 @@ pub struct Style {
 }
 
 mod primitive;
+mod slice;
