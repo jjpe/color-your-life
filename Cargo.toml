@@ -9,6 +9,4 @@ msrv = "1.77.0"
 
 [dependencies]
 ansi_term = "0.12.1"
-
-[dev-dependencies]
 paste = "1.0.14"
