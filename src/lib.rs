@@ -65,3 +65,4 @@ mod primitive;
 mod slice;
 mod str;
 mod vec;
+mod vec_deque;
