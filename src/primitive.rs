@@ -18,6 +18,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
                 }
             }
 
+            #[derive(Clone, Copy)]
             pub struct [<$type:camel Format>] {
                 pub indent: u16,
                 pub style: Option<Style>,

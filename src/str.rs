@@ -17,9 +17,10 @@ impl ColorDisplay<StrFormat> for &'_ str {
     }
 }
 
+#[derive(Clone, Copy)]
 pub struct StrFormat {
-    indent: u16,
-    style: Option<Style>,
+    pub indent: u16,
+    pub style: Option<Style>,
 }
 
 impl StrFormat {

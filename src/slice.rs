@@ -23,11 +23,12 @@ where
     }
 }
 
+#[derive(Clone, Copy)]
 pub struct SliceFormat<TF> {
-    prefix_newlines: u16,
-    intersperse_newlines: u16,
-    suffix_newlines: u16,
-    item_format: TF,
+    pub prefix_newlines: u16,
+    pub intersperse_newlines: u16,
+    pub suffix_newlines: u16,
+    pub item_format: TF,
 }
 
 impl<TF: Format> Format for SliceFormat<TF> {
@@ -45,7 +46,7 @@ impl<TF: Format> Format for SliceFormat<TF> {
 #[cfg(test)]
 mod test {
     use crate::{
-        Color, ColorDisplay, Style,
+        Color, ColorDisplay,
         primitive::U8Format,
     };
     use super::*;

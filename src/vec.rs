@@ -2,32 +2,31 @@
 
 use super::*;
 
-impl<F, T> ColorDisplay<VecFormat<F>> for Vec<T>
+impl<TF, T> ColorDisplay<VecFormat<TF>> for Vec<T>
 where
-    T: ColorDisplay<F>
+    T: ColorDisplay<TF>,
+    TF: Clone,
 {
     fn color_fmt(
         &self,
         sink: &mut impl Write,
-        format: &VecFormat<F>,
+        format: &VecFormat<TF>,
     ) -> std::fmt::Result {
-        self.write_newlines(sink, format.prefix_newlines, &format)?;
-        for (idx, item) in self.iter().enumerate() {
-            if idx > 0 {
-                self.write_newlines(sink, format.intersperse_newlines, &format)?;
-            }
-            item.color_fmt(sink, &format.item)?;
-        }
-        self.write_newlines(sink, format.suffix_newlines, &format)?;
-        Ok(())
+        self.as_slice().color_fmt(sink, &crate::slice::SliceFormat {
+            prefix_newlines: format.prefix_newlines,
+            intersperse_newlines: format.intersperse_newlines,
+            suffix_newlines: format.suffix_newlines,
+            item_format: format.item_format.clone(),
+        })
     }
 }
 
-pub struct VecFormat<F> {
-    prefix_newlines: u16,
-    intersperse_newlines: u16,
-    suffix_newlines: u16,
-    item: F,
+#[derive(Clone, Copy)]
+pub struct VecFormat<TF> {
+    pub(crate) prefix_newlines: u16,
+    pub(crate) intersperse_newlines: u16,
+    pub(crate) suffix_newlines: u16,
+    pub(crate) item_format: TF,
 }
 
 #[cfg(test)]
@@ -36,14 +35,14 @@ mod test {
     use super::VecFormat;
 
     #[test]
-    fn basic() -> std::fmt::Result {
+    fn color_fmt() -> std::fmt::Result {
         let slice: Vec<u8> = vec![10, 20, 30];
         let mut sink = String::with_capacity(1024);
         slice.color_fmt(&mut sink, &VecFormat {
             prefix_newlines: 1,
             intersperse_newlines: 1,
             suffix_newlines: 1,
-            item: U8Format {
+            item_format: U8Format {
                 indent: 0,
                 style: Some(Style {
                     color: Color::Purple,
