@@ -62,6 +62,7 @@ mod btree_set;
 mod hash_map;
 mod hash_set;
 mod primitive;
+mod result;
 mod slice;
 mod str;
 mod vec;
