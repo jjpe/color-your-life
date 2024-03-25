@@ -29,8 +29,8 @@ pub trait ColorDisplay<F> {
     }
 
     /// Utility method to simpify writing newlines.
-    /// In order to print the right newline characters, it takes into account
-    /// the implementing type as well as the format type `F`.
+    /// In order to print the right newline character(s), it takes into
+    /// account the implementing type as well as the format type `F`.
     fn write_newlines(
         &self,
         sink: &mut impl Write,
@@ -42,6 +42,10 @@ pub trait ColorDisplay<F> {
         }
         Ok(())
     }
+}
+
+pub trait Format {
+    fn standard(indent: u16) -> Self;
 }
 
 #[derive(Clone, Copy, PartialEq)]
