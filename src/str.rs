@@ -46,7 +46,7 @@ impl Format for StrFormat {
             indent,
             prefix: "",
             style: Some(Style {
-                color: Color::Blue,
+                color: Color::Green,
                 bold: false,
                 italic: false,
                 underline: false,
