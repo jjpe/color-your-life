@@ -2,6 +2,7 @@
 name = "color-your-life"
 version = "0.1.0"
 edition = "2021"
+description = "A library to color data representations with a Display-like interface"
 authors = ["Joey Ezechiels"]
 rust-version = "1.62.1"
 
