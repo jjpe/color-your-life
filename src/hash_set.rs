@@ -79,7 +79,7 @@ mod test {
         // order is not stable between different HashSet<_> instances. However,
         // it seems the case that for a given HashSet<_> instance, calling
         // `set.iter()` repeatedly will always yield the same iteration order.
-        let vec: Vec<_> = set.iter().collect();
+        let vec: Vec<&u8> = set.iter().collect();
         let expected = format!(
             "\n    ->{}\n    ->{}\n    ->{}\n",
             Color::Red.bold().paint(format!("{}", vec[0])),
