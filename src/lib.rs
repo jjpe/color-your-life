@@ -57,13 +57,13 @@ pub struct Style {
     pub dimmed: bool,
 }
 
-mod btree_map;
-mod btree_set;
-mod hash_map;
-mod hash_set;
-mod primitive;
-mod result;
-mod slice;
-mod str;
-mod vec;
-mod vec_deque;
+pub mod btree_map;
+pub mod btree_set;
+pub mod hash_map;
+pub mod hash_set;
+pub mod primitive;
+pub mod result;
+pub mod slice;
+pub mod str;
+pub mod vec;
+pub mod vec_deque;
