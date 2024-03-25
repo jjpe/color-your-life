@@ -57,6 +57,8 @@ pub struct Style {
     pub dimmed: bool,
 }
 
+mod btree_set;
+mod hash_set;
 mod primitive;
 mod slice;
 mod str;
