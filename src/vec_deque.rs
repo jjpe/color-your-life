@@ -74,7 +74,6 @@ mod test {
         vec_deque.push_back(40);
         let mut sink = String::with_capacity(1024);
         vec_deque.color_fmt(&mut sink, &VecDequeFormat::standard(1))?;
-        println!("{sink}");
         let expected = format!(
             "    {}\n    {}\n{}\n    {}\n    {}",
             Color::Blue.bold().paint("10"),
