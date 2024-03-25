@@ -12,6 +12,7 @@ impl ColorDisplay<StrFormat> for &'_ str {
         format: &StrFormat,
     ) -> std::fmt::Result {
         self.write_indentation(sink, format.indent, format)?;
+        write!(sink, "{}", format.prefix)?;
         let style = format.calculate_style();
         write!(sink, "{}", style.paint(Cow::Borrowed(*self)))
     }
@@ -20,6 +21,7 @@ impl ColorDisplay<StrFormat> for &'_ str {
 #[derive(Clone, Copy)]
 pub struct StrFormat {
     pub indent: u16,
+    pub prefix: &'static str,
     pub style: Option<Style>,
 }
 
@@ -42,6 +44,7 @@ impl Format for StrFormat {
     fn standard(indent: u16) -> Self {
         Self {
             indent,
+            prefix: "",
             style: Some(Style {
                 color: Color::Blue,
                 bold: false,
@@ -64,6 +67,7 @@ mod test {
         let mut sink = String::with_capacity(1024);
         s.color_fmt(&mut sink, &StrFormat {
             indent: 0,
+            prefix: "",
             style: Some(Style {
                 color: Color::Red,
                 bold: true,

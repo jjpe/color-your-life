@@ -13,6 +13,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
                     format: &[<$type:camel Format>],
                 ) -> std::fmt::Result {
                     self.write_indentation(sink, format.indent, format)?;
+                    write!(sink, "{}", format.prefix)?;
                     let style = format.calculate_style();
                     write!(sink, "{}", style.paint(format!("{self}")))
                 }
@@ -21,6 +22,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
             #[derive(Clone, Copy)]
             pub struct [<$type:camel Format>] {
                 pub indent: u16,
+                pub prefix: &'static str,
                 pub style: Option<Style>,
             }
 
@@ -28,6 +30,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
                 fn standard(indent: u16) -> Self {
                     Self {
                         indent,
+                        prefix: "",
                         style: Some(Style {
                             color: Color::Blue,
                             bold: true,
@@ -95,6 +98,7 @@ mod test {
                         let mut sink = String::with_capacity(1024);
                         num.color_fmt(&mut sink, &[<$type:camel Format>] {
                             indent: 0,
+                            prefix: "",
                             style: Some(Style {
                                 color: Color::Yellow,
                                 bold: false,

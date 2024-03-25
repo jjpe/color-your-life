@@ -44,6 +44,7 @@ mod test {
             suffix_newlines: 1,
             item_format: U8Format {
                 indent: 0,
+                prefix: "",
                 style: Some(Style {
                     color: Color::Purple,
                     bold: false,
