@@ -49,7 +49,7 @@ pub trait Format {
 }
 
 #[derive(Clone, Copy, PartialEq)]
-pub struct Style {
+pub struct StyleDesc {
     pub color: Color,
     pub bold: bool,
     pub italic: bool,
@@ -57,7 +57,7 @@ pub struct Style {
     pub dimmed: bool,
 }
 
-impl Style {
+impl StyleDesc {
     pub fn style_from_desc(desc: impl Into<Option<Self>>) -> ansi_term::Style {
         if let Some(desc) = desc.into() {
             let style = desc.color.normal();

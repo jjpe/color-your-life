@@ -63,7 +63,7 @@ mod test {
         let mut sink = String::with_capacity(1024);
         ok_result.color_fmt(&mut sink, &ResultFormat{
             ok_format: StrFormat {
-                style: Some(Style {
+                style_desc: Some(StyleDesc {
                     color: Color::Green,
                     bold: false,
                     italic: false,
@@ -73,7 +73,7 @@ mod test {
                 ..StrFormat::standard(0)
             },
             err_format: StrFormat {
-                style: Some(Style {
+                style_desc: Some(StyleDesc {
                     color: Color::Red,
                     bold: true,
                     italic: false,
@@ -95,7 +95,7 @@ mod test {
         let mut sink = String::with_capacity(1024);
         ok_result.color_fmt(&mut sink, &ResultFormat{
             ok_format: StrFormat {
-                style: Some(Style {
+                style_desc: Some(StyleDesc {
                     color: Color::Green,
                     bold: false,
                     italic: false,
@@ -105,7 +105,7 @@ mod test {
                 ..StrFormat::standard(0)
             },
             err_format: StrFormat {
-                style: Some(Style {
+                style_desc: Some(StyleDesc {
                     color: Color::Red,
                     bold: true,
                     italic: false,

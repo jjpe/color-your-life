@@ -1,6 +1,6 @@
 //!
 
-use crate::{Color, ColorDisplay, Format, Style};
+use crate::{Color, ColorDisplay, Format, StyleDesc};
 use std::fmt::Write;
 
 impl ColorDisplay<BoolFormat> for bool {
@@ -10,7 +10,7 @@ impl ColorDisplay<BoolFormat> for bool {
         format: &BoolFormat,
     ) -> std::fmt::Result {
         self.write_indentation(sink, format.indent, format)?;
-        let style = Style::style_from_desc(format.style);
+        let style = StyleDesc::style_from_desc(format.style_desc);
         write!(sink, "{}", style.paint(if *self { "true" } else { "false" }))
     }
 }
@@ -19,7 +19,7 @@ impl ColorDisplay<BoolFormat> for bool {
 pub struct BoolFormat {
     pub indent: u16,
     pub prefix: &'static str,
-    pub style: Option<Style>,
+    pub style_desc: Option<StyleDesc>,
 }
 
 impl Format for BoolFormat {
@@ -27,7 +27,7 @@ impl Format for BoolFormat {
         Self {
             indent,
             prefix: "",
-            style: Some(Style {
+            style_desc: Some(StyleDesc {
                 color: Color::Purple,
                 bold: true,
                 italic: false,

@@ -31,7 +31,7 @@ pub struct VecFormat<TF> {
 
 #[cfg(test)]
 mod test {
-    use crate::{primitive::U8Format, Color, ColorDisplay, Style};
+    use crate::{primitive::U8Format, Color, ColorDisplay, StyleDesc};
     use super::VecFormat;
 
     #[test]
@@ -45,7 +45,7 @@ mod test {
             item_format: U8Format {
                 indent: 0,
                 prefix: "",
-                style: Some(Style {
+                style_desc: Some(StyleDesc {
                     color: Color::Purple,
                     bold: false,
                     italic: false,

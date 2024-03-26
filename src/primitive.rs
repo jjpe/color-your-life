@@ -1,6 +1,6 @@
 //!
 
-use crate::{Color, ColorDisplay, Format, Style};
+use crate::{Color, ColorDisplay, Format, StyleDesc};
 use std::fmt::Write;
 
 macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
@@ -14,7 +14,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
                 ) -> std::fmt::Result {
                     self.write_indentation(sink, format.indent, format)?;
                     write!(sink, "{}", format.prefix)?;
-                    let style = Style::style_from_desc(format.style);
+                    let style = StyleDesc::style_from_desc(format.style_desc);
                     write!(sink, "{}", style.paint(format!("{self}")))
                 }
             }
@@ -23,7 +23,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
             pub struct [<$type:camel Format>] {
                 pub indent: u16,
                 pub prefix: &'static str,
-                pub style: Option<Style>,
+                pub style_desc: Option<StyleDesc>,
             }
 
             impl Format for [<$type:camel Format>] {
@@ -31,7 +31,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
                     Self {
                         indent,
                         prefix: "",
-                        style: Some(Style {
+                        style_desc: Some(StyleDesc {
                             color: Color::Blue,
                             bold: true,
                             italic: false,
@@ -54,7 +54,7 @@ impl_ColorDisplay_and_add_wrappers_for_numeric_types! {
 
 #[cfg(test)]
 mod test {
-    use crate::{Color, ColorDisplay, Style};
+    use crate::{Color, ColorDisplay, StyleDesc};
     use super::*;
 
     macro_rules! generate_tests_for_numeric_types {
@@ -68,7 +68,7 @@ mod test {
                         num.color_fmt(&mut sink, &[<$type:camel Format>] {
                             indent: 0,
                             prefix: "",
-                            style: Some(Style {
+                            style_desc: Some(StyleDesc {
                                 color: Color::Yellow,
                                 bold: false,
                                 italic: true,

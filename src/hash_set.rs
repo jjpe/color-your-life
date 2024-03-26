@@ -65,7 +65,7 @@ mod test {
             suffix_newlines: 1,
             item_format: U8Format {
                 prefix: "->",
-                style: Some(Style {
+                style_desc: Some(StyleDesc {
                     color: Color::Red,
                     bold: true,
                     italic: false,
