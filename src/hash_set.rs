@@ -41,6 +41,15 @@ impl<TF: Format> Format for HashSetFormat<TF> {
             item_format: TF::standard(indent),
         }
     }
+
+    fn monochrome(indent: u16) -> Self {
+        Self {
+            prefix_newlines: 0,
+            intersperse_newlines: 1,
+            suffix_newlines: 0,
+            item_format: TF::monochrome(indent),
+        }
+    }
 }
 
 

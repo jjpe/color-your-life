@@ -46,6 +46,15 @@ impl<OF: Format, EF: Format> Format for ResultFormat<OF, EF> {
             err_format: EF::standard(indent),
         }
     }
+
+    fn monochrome(indent: u16) -> Self {
+        Self {
+            ok_prefix: "✅ ",
+            ok_format: OF::monochrome(indent),
+            err_prefix: "❌ ",
+            err_format: EF::monochrome(indent),
+        }
+    }
 }
 
 

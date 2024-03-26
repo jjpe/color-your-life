@@ -42,6 +42,15 @@ impl Format for StrFormat {
             }),
         }
     }
+
+    fn monochrome(indent: u16) -> Self {
+        Self {
+            indent,
+            delimiter: "",
+            prefix: "",
+            style_desc: None,
+        }
+    }
 }
 
 #[cfg(test)]

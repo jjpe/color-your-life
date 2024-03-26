@@ -46,6 +46,8 @@ pub trait ColorDisplay<F> {
 
 pub trait Format {
     fn standard(indent: u16) -> Self;
+
+    fn monochrome(indent: u16) -> Self;
 }
 
 #[derive(Clone, Copy, PartialEq)]

@@ -36,6 +36,14 @@ impl Format for BoolFormat {
             }),
         }
     }
+
+    fn monochrome(indent: u16) -> Self {
+        Self {
+            indent,
+            prefix: "",
+            style_desc: None,
+        }
+    }
 }
 
 

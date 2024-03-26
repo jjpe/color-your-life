@@ -40,6 +40,14 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
                         }),
                     }
                 }
+
+                fn monochrome(indent: u16) -> Self {
+                    Self {
+                        indent,
+                        prefix: "",
+                        style_desc: None,
+                    }
+                }
             }
 
         )*

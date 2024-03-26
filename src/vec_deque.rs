@@ -57,6 +57,17 @@ impl<TF: Format> Format for VecDequeFormat<TF> {
             item_format: TF::standard(indent),
         }
     }
+
+    fn monochrome(indent: u16) -> Self {
+        Self {
+            prefix_newlines: 0,
+            intersperse_newlines: 1,
+            suffix_newlines: 0,
+            front_back_separator_token: "-",
+            front_back_separator_count: 40,
+            item_format: TF::monochrome(indent),
+        }
+    }
 }
 
 

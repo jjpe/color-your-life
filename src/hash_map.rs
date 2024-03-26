@@ -49,6 +49,17 @@ impl<KF: Format, VF: Format> Format for HashMapFormat<KF, VF> {
             value_format: VF::standard(indent),
         }
     }
+
+    fn monochrome(indent: u16) -> Self {
+        Self {
+            prefix_newlines: 0,
+            intersperse_newlines: 1,
+            suffix_newlines: 0,
+            key_value_separator: ": ",
+            key_format: KF::monochrome(indent),
+            value_format: VF::monochrome(indent),
+        }
+    }
 }
 
 
