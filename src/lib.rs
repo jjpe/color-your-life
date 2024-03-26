@@ -57,6 +57,7 @@ pub struct Style {
     pub dimmed: bool,
 }
 
+pub mod bool;
 pub mod btree_map;
 pub mod btree_set;
 pub mod hash_map;
