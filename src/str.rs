@@ -13,7 +13,7 @@ impl ColorDisplay<StrFormat> for &'_ str {
     ) -> std::fmt::Result {
         self.write_indentation(sink, format.indent, format)?;
         write!(sink, "{}", format.prefix)?;
-        let style = format.calculate_style();
+        let style = Style::style_from_desc(format.style);
         write!(sink, "{}", style.paint(Cow::Borrowed(*self)))
     }
 }
@@ -23,21 +23,6 @@ pub struct StrFormat {
     pub indent: u16,
     pub prefix: &'static str,
     pub style: Option<Style>,
-}
-
-impl StrFormat {
-    fn calculate_style(&self) -> ansi_term::Style {
-        if let Some(desc) = self.style {
-            let style = desc.color.normal();
-            let style = if desc.bold      { style.bold()      } else { style };
-            let style = if desc.italic    { style.italic()    } else { style };
-            let style = if desc.underline { style.underline() } else { style };
-            let style = if desc.dimmed    { style.dimmed()    } else { style };
-            style
-        } else {
-            ansi_term::Style::default()
-        }
-    }
 }
 
 impl Format for StrFormat {
