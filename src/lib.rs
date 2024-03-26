@@ -57,18 +57,18 @@ pub struct StyleDesc {
     pub dimmed: bool,
 }
 
-impl StyleDesc {
-    pub fn style_from_desc(desc: impl Into<Option<Self>>) -> ansi_term::Style {
-        if let Some(desc) = desc.into() {
-            let style = desc.color.normal();
-            let style = if desc.bold      { style.bold()      } else { style };
-            let style = if desc.italic    { style.italic()    } else { style };
-            let style = if desc.underline { style.underline() } else { style };
-            let style = if desc.dimmed    { style.dimmed()    } else { style };
-            style
-        } else {
-            ansi_term::Style::default()
-        }
+pub fn compute_leaf_style(
+    desc: impl Into<Option<StyleDesc>>
+) -> ansi_term::Style {
+    if let Some(desc) = desc.into() {
+        let style = desc.color.normal();
+        let style = if desc.bold      { style.bold()      } else { style };
+        let style = if desc.italic    { style.italic()    } else { style };
+        let style = if desc.underline { style.underline() } else { style };
+        let style = if desc.dimmed    { style.dimmed()    } else { style };
+        style
+    } else {
+        ansi_term::Style::default()
     }
 }
 

@@ -1,7 +1,7 @@
 //!
 
 use ansi_term::Color;
-use crate::{ColorDisplay, Format, StyleDesc};
+use crate::{compute_leaf_style, ColorDisplay, Format, StyleDesc};
 use std::borrow::Cow;
 use std::fmt::Write;
 
@@ -13,7 +13,7 @@ impl ColorDisplay<StrFormat> for &'_ str {
     ) -> std::fmt::Result {
         self.write_indentation(sink, format.indent, format)?;
         write!(sink, "{}", format.prefix)?;
-        let style = StyleDesc::style_from_desc(format.style_desc);
+        let style = compute_leaf_style(format.style_desc);
         write!(sink, "{}", style.paint(Cow::Borrowed(*self)))
     }
 }

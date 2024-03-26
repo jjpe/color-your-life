@@ -1,6 +1,6 @@
 //!
 
-use crate::{Color, ColorDisplay, Format, StyleDesc};
+use crate::{compute_leaf_style, Color, ColorDisplay, Format, StyleDesc};
 use std::fmt::Write;
 
 macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
@@ -14,7 +14,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
                 ) -> std::fmt::Result {
                     self.write_indentation(sink, format.indent, format)?;
                     write!(sink, "{}", format.prefix)?;
-                    let style = StyleDesc::style_from_desc(format.style_desc);
+                    let style = compute_leaf_style(format.style_desc);
                     write!(sink, "{}", style.paint(format!("{self}")))
                 }
             }

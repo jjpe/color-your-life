@@ -1,6 +1,6 @@
 //!
 
-use crate::{Color, ColorDisplay, Format, StyleDesc};
+use crate::{compute_leaf_style, Color, ColorDisplay, Format, StyleDesc};
 use std::fmt::Write;
 
 impl ColorDisplay<BoolFormat> for bool {
@@ -10,7 +10,7 @@ impl ColorDisplay<BoolFormat> for bool {
         format: &BoolFormat,
     ) -> std::fmt::Result {
         self.write_indentation(sink, format.indent, format)?;
-        let style = StyleDesc::style_from_desc(format.style_desc);
+        let style = compute_leaf_style(format.style_desc);
         write!(sink, "{}", style.paint(if *self { "true" } else { "false" }))
     }
 }
