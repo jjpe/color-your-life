@@ -14,13 +14,15 @@ impl ColorDisplay<StrFormat> for &'_ str {
         self.write_indentation(sink, format.indent, format)?;
         write!(sink, "{}", format.prefix)?;
         let style = compute_leaf_style(format.style_desc);
-        write!(sink, "{}", style.paint(Cow::Borrowed(*self)))
+        let d = format.delimiter;
+        write!(sink, "{d}{}{d}", style.paint(Cow::Borrowed(*self)))
     }
 }
 
 #[derive(Clone, Copy)]
 pub struct StrFormat {
     pub indent: u16,
+    pub delimiter: &'static str,
     pub prefix: &'static str,
     pub style_desc: Option<StyleDesc>,
 }
@@ -29,6 +31,7 @@ impl Format for StrFormat {
     fn standard(indent: u16) -> Self {
         Self {
             indent,
+            delimiter: "",
             prefix: "",
             style_desc: Some(StyleDesc {
                 color: Color::Green,
@@ -52,6 +55,7 @@ mod test {
         let mut sink = String::with_capacity(1024);
         s.color_fmt(&mut sink, &StrFormat {
             indent: 0,
+            delimiter: "",
             prefix: "",
             style_desc: Some(StyleDesc {
                 color: Color::Red,
