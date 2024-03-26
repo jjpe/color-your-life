@@ -33,12 +33,12 @@ pub struct BTreeSetFormat<TF> {
 }
 
 impl<TF: Format> Format for BTreeSetFormat<TF> {
-    fn standard(indent: u16) -> Self {
+    fn colored(indent: u16) -> Self {
         Self {
             prefix_newlines: 0,
             intersperse_newlines: 1,
             suffix_newlines: 0,
-            item_format: TF::standard(indent),
+            item_format: TF::colored(indent),
         }
     }
 
@@ -74,7 +74,7 @@ mod test {
             suffix_newlines: 1,
             item_format: U8Format {
                 prefix: "->",
-                ..U8Format::standard(1)
+                ..U8Format::colored(1)
             },
         })?;
         let expected = format!(

@@ -38,12 +38,12 @@ pub struct ResultFormat<OF, EF> {
 }
 
 impl<OF: Format, EF: Format> Format for ResultFormat<OF, EF> {
-    fn standard(indent: u16) -> Self {
+    fn colored(indent: u16) -> Self {
         Self {
             ok_prefix: "✅ ",
-            ok_format: OF::standard(indent),
+            ok_format: OF::colored(indent),
             err_prefix: "❌ ",
-            err_format: EF::standard(indent),
+            err_format: EF::colored(indent),
         }
     }
 
@@ -79,7 +79,7 @@ mod test {
                     underline: false,
                     dimmed: false,
                 }),
-                ..StrFormat::standard(0)
+                ..StrFormat::colored(0)
             },
             err_format: StrFormat {
                 style_desc: Some(StyleDesc {
@@ -89,9 +89,9 @@ mod test {
                     underline: false,
                     dimmed: false,
                 }),
-                ..StrFormat::standard(0)
+                ..StrFormat::colored(0)
             },
-            ..ResultFormat::standard(1)
+            ..ResultFormat::colored(1)
         })?;
         let expected = format!("✅ {}", Color::Green.paint("hello"));
         assert_eq!(sink, expected);
@@ -111,7 +111,7 @@ mod test {
                     underline: false,
                     dimmed: false,
                 }),
-                ..StrFormat::standard(0)
+                ..StrFormat::colored(0)
             },
             err_format: StrFormat {
                 style_desc: Some(StyleDesc {
@@ -121,9 +121,9 @@ mod test {
                     underline: false,
                     dimmed: false,
                 }),
-                ..StrFormat::standard(0)
+                ..StrFormat::colored(0)
             },
-            ..ResultFormat::standard(1)
+            ..ResultFormat::colored(1)
         })?;
         let expected = format!("❌ {}", Color::Red.bold().paint("oh no"));
         assert_eq!(sink, expected);

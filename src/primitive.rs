@@ -27,7 +27,7 @@ macro_rules! impl_ColorDisplay_and_add_wrappers_for_numeric_types {
             }
 
             impl Format for [<$type:camel Format>] {
-                fn standard(indent: u16) -> Self {
+                fn colored(indent: u16) -> Self {
                     Self {
                         indent,
                         prefix: "",

@@ -23,7 +23,7 @@ pub struct BoolFormat {
 }
 
 impl Format for BoolFormat {
-    fn standard(indent: u16) -> Self {
+    fn colored(indent: u16) -> Self {
         Self {
             indent,
             prefix: "",
@@ -56,7 +56,7 @@ mod test {
     fn color_fmt() -> std::fmt::Result {
         let b = true;
         let mut sink = String::with_capacity(1024);
-        b.color_fmt(&mut sink, &BoolFormat::standard(0))?;
+        b.color_fmt(&mut sink, &BoolFormat::colored(0))?;
         let expected = format!(
             "{}", Color::Purple.bold().paint(format!("{b}"))
         );

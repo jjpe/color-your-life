@@ -28,7 +28,7 @@ pub struct StrFormat {
 }
 
 impl Format for StrFormat {
-    fn standard(indent: u16) -> Self {
+    fn colored(indent: u16) -> Self {
         Self {
             indent,
             delimiter: "",

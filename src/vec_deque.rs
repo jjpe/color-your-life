@@ -47,14 +47,14 @@ pub struct VecDequeFormat<TF> {
 }
 
 impl<TF: Format> Format for VecDequeFormat<TF> {
-    fn standard(indent: u16) -> Self {
+    fn colored(indent: u16) -> Self {
         Self {
             prefix_newlines: 0,
             intersperse_newlines: 1,
             suffix_newlines: 0,
             front_back_separator_token: "-",
             front_back_separator_count: 40,
-            item_format: TF::standard(indent),
+            item_format: TF::colored(indent),
         }
     }
 
@@ -84,7 +84,7 @@ mod test {
         vec_deque.push_back(30);
         vec_deque.push_back(40);
         let mut sink = String::with_capacity(1024);
-        vec_deque.color_fmt(&mut sink, &VecDequeFormat::standard(1))?;
+        vec_deque.color_fmt(&mut sink, &VecDequeFormat::colored(1))?;
         let expected = format!(
             "    {}\n    {}\n{}\n    {}\n    {}",
             Color::Blue.bold().paint("10"),

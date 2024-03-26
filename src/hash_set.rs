@@ -33,12 +33,12 @@ pub struct HashSetFormat<TF> {
 }
 
 impl<TF: Format> Format for HashSetFormat<TF> {
-    fn standard(indent: u16) -> Self {
+    fn colored(indent: u16) -> Self {
         Self {
             prefix_newlines: 0,
             intersperse_newlines: 1,
             suffix_newlines: 0,
-            item_format: TF::standard(indent),
+            item_format: TF::colored(indent),
         }
     }
 
@@ -81,7 +81,7 @@ mod test {
                     underline: false,
                     dimmed: false,
                 }),
-                ..U8Format::standard(1)
+                ..U8Format::colored(1)
             },
         })?;
         // Collect into a Vec<_> to obtain order stability, as the iteration

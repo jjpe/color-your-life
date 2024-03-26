@@ -39,14 +39,14 @@ pub struct HashMapFormat<KF, VF> {
 }
 
 impl<KF: Format, VF: Format> Format for HashMapFormat<KF, VF> {
-    fn standard(indent: u16) -> Self {
+    fn colored(indent: u16) -> Self {
         Self {
             prefix_newlines: 0,
             intersperse_newlines: 1,
             suffix_newlines: 0,
             key_value_separator: ": ",
-            key_format: KF::standard(indent),
-            value_format: VF::standard(indent),
+            key_format: KF::colored(indent),
+            value_format: VF::colored(indent),
         }
     }
 
@@ -86,9 +86,9 @@ mod test {
             key_value_separator: " = ",
             key_format: U8Format {
                 prefix: "-> ",
-                ..U8Format::standard(1)
+                ..U8Format::colored(1)
             },
-            value_format: StrFormat::standard(0),
+            value_format: StrFormat::colored(0),
         })?;
         // Collect into a Vec<_> to obtain order stability, as the iteration
         // order is not stable between different HashMap<_> instances. However,
