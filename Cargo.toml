@@ -5,7 +5,7 @@ edition = "2021"
 description = "A library to color data representations with a Display-like interface"
 authors = ["Joey Ezechiels"]
 rust-version = "1.62.1"
-license = "Apache-2.0"
+license = "MIT OR Apache-2.0"
 license-file = "LICENSE"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
