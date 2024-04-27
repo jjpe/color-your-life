@@ -75,6 +75,7 @@ pub fn compute_leaf_style(
 }
 
 pub mod bool;
+pub mod char;
 pub mod btree_map;
 pub mod btree_set;
 pub mod hash_map;
