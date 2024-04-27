@@ -1,6 +1,6 @@
 [package]
 name = "color-your-life"
-version = "0.7.1"
+version = "0.8.0"
 edition = "2021"
 description = "A library to color data representations with a Display-like interface"
 authors = ["Joey Ezechiels"]

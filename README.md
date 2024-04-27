@@ -15,7 +15,7 @@ that lets you color as well as format print your datastructure.
 Add a dependency on this crate to your project's `Cargo.toml`:
 ``` toml
 [dependencies]
-color-your-life = "0.7.1"
+color-your-life = "0.8.0"
 ```
 
 We now can print e.g. strings:
