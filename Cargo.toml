@@ -2,11 +2,11 @@
 name = "color-your-life"
 version = "0.8.0"
 edition = "2021"
+repository = "https://github.com/jjpe/color-your-life.git"
 description = "A library to color data representations with a Display-like interface"
 authors = ["Joey Ezechiels"]
-rust-version = "1.62.1"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/jjpe/color-your-life.git"
+rust-version = "1.68.2"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

@@ -1,8 +1,9 @@
 # Color Your Life
 
+[![crates.io](https://img.shields.io/crates/v/color-your-life?label=color-your-life)](https://crates.io/crates/color-your-life)
+[![Documentation](https://docs.rs/color-your-life/badge.svg)](https://docs.rs/color-your-life/latest)
 ![Rust](https://github.com/jjpe/color-your-life/workflows/Rust/badge.svg)
-[![](https://img.shields.io/crates/v/color-your-life?label=color-your-life)](https://crates.io/crates/color-your-life)
-![](https://img.shields.io/badge/rustc-1.26+-darkcyan.svg)
+![](https://img.shields.io/badge/rustc-1.68.2+-red.svg)
 ![](https://img.shields.io/crates/l/color-your-life)
 
 ## Synopsis
